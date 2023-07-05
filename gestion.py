@@ -8,7 +8,7 @@ if __name__ == '__main__':
     isAddProducts = True
     while isAddProducts:
         os.system('cls')
-        print(f'1. Registrar Producto\n2. Mostrar Productos\n3. Registrar compra\n4. Mostrar Compras')
+        print(f'1. Registrar Producto\n2. Mostrar Productos\n3. Registrar compra\n4. Mostrar Compras\n5. Registrar venta\n6. Mostrar ventas')
         opcion = int(input('Selecione una opcion: '))
         if opcion == 1:
             inventario.addProduct(products)
@@ -25,4 +25,13 @@ if __name__ == '__main__':
         elif opcion == 4:
             os.system('cls')
             print(shopping)
+            os.system('pause')
+
+        elif opcion == 5:
+            os.system('cls')
+            inventario.regSales(sales, products)
+
+        elif opcion == 6:
+            os.system('cls')
+            print(sales)
             os.system('pause')

@@ -29,25 +29,56 @@ def regShopping(compras : dict, productos : dict):
 
     while isAddShopping:
         producto = productos.get(input('Ingrese el codigo de producto: '),-1)
-        print(producto)
+        #print(producto)
         if producto == -1:
             print('Codigo de producto no encontrado')
         else:
             cantCompra = int(input('Ingrese cantidad: '))
-            print(producto['stock'])
             if cantCompra <= producto['stock']:
-                newStock = producto['stock']-cantCompra
+                newStock = producto['stock']+cantCompra
                 valCompra = cantCompra * producto['valorCompra']
                 producto['stock']= newStock
                 producto.update({'cantCompra':cantCompra})
                 producto.update({'valCompra':valCompra})
-                producto.pop('valorVenta')
-                print(producto)
+                #print(producto)
                 carritoCompras.update({producto['codigo']: producto})
-                print(carritoCompras)
+                #print(carritoCompras)
                 compra[codCompra].update({'compras':carritoCompras})
-                print(compra)
+                #print(compra)
                 isAddShopping = bool(input("Desea agregar otro Producto S(Si) Enter(No)"))
     compras.update(compra)
-    print(compras)
-        
+    #print(compras)
+
+def regSales(ventas : dict, productos : dict):
+    isAddSale = True
+    codVenta = input('Ingrese codigo de venta: ') 
+    venta = {
+        codVenta:{
+            'cod': codVenta,
+            "docCompra": input('Ingrese documento venta: '),
+            "fechaCompra": input('Ingrese fecha de venta: '),
+        }
+    }
+    carritoVentas = {}
+
+    while isAddSale:
+        producto = productos.get(input('Ingrese el codigo de producto: '),-1)
+        #print(producto)
+        if producto == -1:
+            print('Codigo de producto no encontrado')
+        else:
+            cantVenta = int(input('Ingrese cantidad: '))
+            if cantVenta <= producto['stock']:
+                newStock = producto['stock']-cantVenta
+                valVenta = cantVenta * producto['valorVenta']
+                producto['stock']= newStock
+                producto.update({'cantVenta':cantVenta})
+                producto.update({'valVenta':valVenta})
+                #print(producto)
+                carritoVentas.update({producto['codigo']: producto})
+                #print(carritoCompras)
+                venta[codVenta].update({'ventas':carritoVentas})
+                #print(compra)
+                isAddSale = bool(input("Desea agregar otro Producto S(Si) Enter(No)"))
+    ventas.update(venta)
+    
