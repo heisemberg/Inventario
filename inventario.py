@@ -21,24 +21,33 @@ def regShopping(compras : dict, productos : dict):
     compra = {
         codCompra:{
             'cod': codCompra,
-            "docCompra": input('Ingrese documento compra'),
-            "fechaCompra": input('Ingrese fecha de compra'),
-            "compra": {}
+            "docCompra": input('Ingrese documento compra: '),
+            "fechaCompra": input('Ingrese fecha de compra: '),
         }
     }
+    carritoCompras = {}
 
     while isAddShopping:
-        producto = productos.get(input('Ingrese el codigo de producto:'),-1)
+        producto = productos.get(input('Ingrese el codigo de producto: '),-1)
+        print(producto)
         if producto == -1:
             print('Codigo de producto no encontrado')
         else:
             cantCompra = int(input('Ingrese cantidad: '))
+            print(producto['stock'])
             if cantCompra <= producto['stock']:
                 newStock = producto['stock']-cantCompra
-                valCompra = newStock * producto['valorCompra']
-                productos.update({producto['stock']: newStock})
-                compra.update({codCompra['compra']: producto})
-                #compra['codCompra']['compra'].update(producto[valCompra])
-                
-        compras.update(compra)
-        isAddShopping = bool("Desea agregar otro Producto S(Si) Enter(No)")
+                valCompra = cantCompra * producto['valorCompra']
+                producto['stock']= newStock
+                producto.update({'cantCompra':cantCompra})
+                producto.update({'valCompra':valCompra})
+                producto.pop('valorVenta')
+                print(producto)
+                carritoCompras.update({producto['codigo']: producto})
+                print(carritoCompras)
+                compra[codCompra].update({'compras':carritoCompras})
+                print(compra)
+                isAddShopping = bool(input("Desea agregar otro Producto S(Si) Enter(No)"))
+    compras.update(compra)
+    print(compras)
+        
