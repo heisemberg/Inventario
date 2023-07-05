@@ -14,3 +14,31 @@ def addProduct (productos : dict):
         }  
     } 
     productos.update(producto)
+
+def regShopping(compras : dict, productos : dict):
+    isAddShopping = True
+    codCompra = input('Ingrese codigo de compra: ') 
+    compra = {
+        codCompra:{
+            'cod': codCompra,
+            "docCompra": input('Ingrese documento compra'),
+            "fechaCompra": input('Ingrese fecha de compra'),
+            "compra": {}
+        }
+    }
+
+    while isAddShopping:
+        producto = productos.get(input('Ingrese el codigo de producto:'),-1)
+        if producto == -1:
+            print('Codigo de producto no encontrado')
+        else:
+            cantCompra = int(input('Ingrese cantidad: '))
+            if cantCompra <= producto['stock']:
+                newStock = producto['stock']-cantCompra
+                valCompra = newStock * producto['valorCompra']
+                productos.update({producto['stock']: newStock})
+                compra.update({codCompra['compra']: producto})
+                #compra['codCompra']['compra'].update(producto[valCompra])
+                
+        compras.update(compra)
+        isAddShopping = bool("Desea agregar otro Producto S(Si) Enter(No)")
