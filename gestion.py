@@ -37,7 +37,7 @@ if __name__ == '__main__':
             elif opcion == 5:
                 os.system('cls')
                 print(shopping)
-                os.system('pause')
+                os.system('pause')  
 
             elif opcion == 6:
                 os.system('cls')
