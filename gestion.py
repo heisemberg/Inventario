@@ -48,4 +48,4 @@ if __name__ == '__main__':
                 print(sales)
                 os.system('pause')
         except Exception:
-            isAddTeam= bool(input("Desea continuar en el programa S(Si) o Enter(No) :"))
+            isAddTeam= bool(input("Desea continuar en el programa S(Si) o Enter(No): "))
